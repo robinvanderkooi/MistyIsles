@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=3 uid="uid://rfrgxj6b1ot1"]
+
+[ext_resource type="Script" path="res://Scripts/island.gd" id="1_m5cgf"]
+[ext_resource type="Script" path="res://Scripts/island_textures.gd" id="2_d1s0i"]
+[ext_resource type="Texture2D" uid="uid://c8rlcuqcp24tg" path="res://result_image.png" id="3_2pdho"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nyovn"]
+noise_type = 2
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_3s6d4"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_nyovn")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_4enje"]
+frequency = 0.0011
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_38yfh"]
+width = 2048
+height = 2048
+noise = SubResource("FastNoiseLite_4enje")
+
+[sub_resource type="Gradient" id="Gradient_y7114"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n6kjd"]
+gradient = SubResource("Gradient_y7114")
+width = 2048
+height = 2048
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.98, 0.5)
+
+[node name="Island" type="Node3D"]
+script = ExtResource("1_m5cgf")
+
+[node name="Textures" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_d1s0i")
+
+[node name="Result" type="TextureRect" parent="Textures"]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -316.0
+offset_top = 333.0
+offset_right = -60.0
+offset_bottom = 589.0
+grow_horizontal = 0
+texture = ExtResource("3_2pdho")
+expand_mode = 3
+
+[node name="Mountians" type="TextureRect" parent="Textures"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 58.0
+offset_right = -54.0
+offset_bottom = 186.0
+grow_horizontal = 0
+texture = SubResource("NoiseTexture2D_3s6d4")
+expand_mode = 3
+
+[node name="Noisey" type="TextureRect" parent="Textures"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -324.0
+offset_top = 58.0
+offset_right = -196.0
+offset_bottom = 186.0
+grow_horizontal = 0
+texture = SubResource("NoiseTexture2D_38yfh")
+expand_mode = 3
+
+[node name="Gradiant" type="TextureRect" parent="Textures"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -182.0
+offset_top = 196.0
+offset_right = -54.0
+offset_bottom = 324.0
+grow_horizontal = 0
+texture = SubResource("GradientTexture2D_n6kjd")
+expand_mode = 3
